@@ -1,0 +1,19 @@
+.coin-image {
+  width: 100%;
+  object-fit:contain!important;
+  flex-shrink: 0;
+}
+.card-log-container {
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+}
+.card-title {
+  margin: 0 0 0 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.card {
+  width: 219px;
+
+}

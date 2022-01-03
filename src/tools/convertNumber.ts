@@ -1,0 +1,1 @@
+export const convertNumber = (number: number) =>  Number(number.toFixed()).toLocaleString()

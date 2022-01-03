@@ -1,0 +1,24 @@
+.page-container {
+  margin: 0 10%;
+  background: #f5b7b7;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  display: grid;
+  row-gap: 20px;
+  align-items: start;
+
+
+}
+
+
+
+
+@keyframes loaderAnimation {
+  from {
+    transform: rotate(0deg) ;
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
