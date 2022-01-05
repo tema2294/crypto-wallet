@@ -2,8 +2,12 @@ import {Link} from "react-router-dom";
 import logo from '../../logo.svg';
 
 import './style.scss'
-const Header = () => {
+import {useSelector} from "react-redux";
+import {userSelector} from "../../store/selectors/selectors";
 
+const Header = () => {
+    const userData = useSelector(userSelector)
+    const username = userData?.username
     return (
         <header className='header-container'>
             <nav>
@@ -20,6 +24,10 @@ const Header = () => {
                     </li>
                 </ul>
             </nav>
+            {username &&
+            <div className='header-user-info'>
+                {username}
+            </div>}
         </header>
     )
 }

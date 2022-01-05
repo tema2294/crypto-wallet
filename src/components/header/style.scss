@@ -1,5 +1,6 @@
 .header-container {
   background-color: #7952b3;
+  position: relative;
 }
 .nav-item {
 
@@ -22,4 +23,12 @@
 .logo-container {
   padding: 7px 0;
   height: 100%!important;
+}
+.header-user-info {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translate(0,-50%);
+  color: white;
+  font-weight: bold;
 }

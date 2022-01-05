@@ -2,6 +2,7 @@
   "name": "crypto-wallet",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://fast-headland-89130.herokuapp.com",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.14.1",

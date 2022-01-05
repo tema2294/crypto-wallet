@@ -6,6 +6,7 @@ import {coinsWithFullInfoSelector, isLoadingSelector} from "./store/selectors/se
 import {walletActions} from "./reducers/walletSlice";
 import {CoinList} from "./components/coinList/coinList";
 import {SumWidget} from "./components/sumWidget/sumWidget";
+import {apiCoinGecko, apiHeroku} from "./tools/api";
 
 function App() {
     const storeCoins = useSelector(coinsWithFullInfoSelector)
@@ -29,7 +30,6 @@ function App() {
     },[])
     return (
         <>
-
             <SumWidget width={300} coins={storeCoins} isLoading={isLoading} />
             <CoinList coins={storeCoins} isLoading={isLoading}/>
         </>
@@ -37,3 +37,6 @@ function App() {
 }
 
 export default App;
+const getUsers = async () => {
+    console.log(await apiHeroku.get('auth/users'))
+}

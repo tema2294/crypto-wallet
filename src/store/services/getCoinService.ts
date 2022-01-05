@@ -1,7 +1,6 @@
-import axios from "axios"
-import {baseUrl} from "../../const";
+import {apiCoinGecko} from "../../tools/api";
 
 export const getCoin = async (coinName: string) => {
-    const data = await axios.get(baseUrl + 'coins/' + coinName)
+    const data = await apiCoinGecko.get('coins/' + coinName)
     return data
 }
