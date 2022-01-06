@@ -4,6 +4,7 @@ import { getCoinWorker } from "./getCoin";
 import { coinsNameSelector } from "../selectors/selectors";
 import {apiHeroku} from "../../tools/api";
 import {updateUser} from "../services/updateUser";
+import {clearObject} from "../../tools/clearObject";
 
 
 export function* updateUserWatcher() {
@@ -14,8 +15,13 @@ function* updateUserWorker(action: {payload: {username?: string,newUsername?:str
     try {
         yield put(walletActions.setLoading(true))
 
-        const { data } = yield call(updateUser,action.payload)
-        console.log(data)
+        const { data } = yield call(updateUser,clearObject(action.payload))
+        const { user } = data
+
+        if (user) {
+            yield put(walletActions.setUser(user))
+
+        }
 
         yield put(walletActions.setLoading(false))
 

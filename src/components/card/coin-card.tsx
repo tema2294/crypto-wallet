@@ -1,9 +1,10 @@
 import './style.scss'
 import {convertNumber} from "../../tools/convertNumber";
+import {PriceChangeTable} from "../price-change-table/price-change-table";
 
 export const CoinCard = (props: any) => {
     const {data} = props
-    const { name,usdPrice,image,myInvestingUsd,myInvestingRub } = data
+    const { name,usdPrice,image,myInvestingUsd,myInvestingRub,market_data } = data
     const { small } = image
     const convertUsdPrice = convertNumber(usdPrice)
     const profitUsd = convertNumber(myInvestingUsd)
@@ -19,9 +20,8 @@ export const CoinCard = (props: any) => {
             <div className="card-body">
                 <p className="card-text">Стоимость актива:  { convertUsdPrice } $</p>
                 <p className="card-text">Мой доход:  { profitUsd } $ </p>
-                <p className="card-text"> ( {profitRub} rub)</p>
-
-                <button className="btn btn-primary ">Удалить</button>
+                <p className="card-text"> ( {profitRub} rub )</p>
+                <PriceChangeTable market_data={market_data} />
             </div>
         </li>
     )

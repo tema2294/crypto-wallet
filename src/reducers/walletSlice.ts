@@ -1,15 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {updateUserWatcher} from "../store/sagas/updateUser";
 
 export interface CounterState {
-    coinsName : any[],
-    coinsWithFullData: any[],
+    coinsWithFullData: any[]
     isLoading: boolean,
     user?: any
 }
 
 const initialState: CounterState = {
-    coinsName : [],
     coinsWithFullData: [],
     isLoading: true
 }
@@ -18,15 +15,13 @@ export const walletSlice = createSlice({
     name: 'wallet',
     initialState,
     reducers: {
-        addInitialCoinName:(state,action: PayloadAction<any[]>) => {
-            state.coinsName = action.payload
-        },
-        addCoin: (state,action: PayloadAction<string>) => {
-            return state
-        },
+
         addCoinWithFullInfo: (state,action: PayloadAction<any>) => {
             const coin  = action.payload
             state.coinsWithFullData = [...state.coinsWithFullData , coin]
+        },
+        addCoin: (state)=> {
+            return state
         },
         loadAllCoins: (state) => {
             return state
@@ -38,11 +33,15 @@ export const walletSlice = createSlice({
             state.isLoading = action.payload
         },
         setUser: (state,action:PayloadAction<any>) => {
+            state.coinsWithFullData = []
             state.user = action.payload
         },
         updateUser: (state,action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins:any[] }>) => {
             return state
         },
+        getUserInfo: (state)=> {
+           return state
+        }
     },
 })
 

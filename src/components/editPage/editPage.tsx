@@ -14,7 +14,7 @@ export const EditPage = () => {
     const dispatch: AppDispatch = useDispatch()
     const myRoleIsAdmin = useSelector(userSelector)?.roles.includes('ADMIN')
 
-    const addCoin = () => {
+    const updateUser = () => {
         dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput,count: countCoinInput}] }))
     }
 
@@ -57,8 +57,8 @@ export const EditPage = () => {
                     <label htmlFor="exampleInputPassword1">Количество монет:</label>
                     <input onChange={onChangeCountCoin} value={countCoinInput} className='form-control mt-1' />
                 </div>
-                <Button onClick={addCoin} className='mt-5'>
-                    Добавить
+                <Button onClick={updateUser} className='mt-5'>
+                    Обновить
                 </Button>
             </form>
 
