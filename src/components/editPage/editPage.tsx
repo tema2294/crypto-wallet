@@ -3,16 +3,21 @@ import React, {useEffect, useState} from "react";
 import {AppDispatch} from "../../store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {walletActions} from "../../reducers/walletSlice";
-import {userSelector} from "../../store/selectors/selectors";
+import {coinOptionsListSelector, userSelector} from "../../store/selectors/selectors";
+import { Autocomplete, TextField } from "@mui/material";
 
 export const EditPage = () => {
-    const [coinInput,setCoinInput] = useState('')
+    const [coinInput,setCoinInput] = useState<any>('')
     const [usernameInput,setUsernameInput] = useState('')
     const [newUsernameInput,setNewUsernameInput] = useState('')
     const [countCoinInput,setCountCoinInput] = useState('')
 
     const dispatch: AppDispatch = useDispatch()
-    const myRoleIsAdmin = useSelector(userSelector)?.roles.includes('ADMIN')
+    const myRoleIsAdmin = useSelector(userSelector)?.roles?.includes('ADMIN')
+    const coinOptionsList = useSelector(coinOptionsListSelector)
+    useEffect(()=> {
+        dispatch(walletActions.loadCoinOptionsList())
+    },[])
 
     const updateUser = () => {
         dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput,count: countCoinInput}] }))
@@ -36,8 +41,6 @@ export const EditPage = () => {
             <label>
                 Введите название монеты:
             </label>
-
-
             <form className='login-form'>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Новое имя:</label>
@@ -45,13 +48,18 @@ export const EditPage = () => {
                 </div>
                 {myRoleIsAdmin &&
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Старое имя:</label>
-                    <input onChange={onChangOldName} value={usernameInput} type="login" className="form-control"
-                           placeholder="Enter login"/>
+
+                    <TextField onChange={onChangOldName} value={usernameInput} placeholder="Enter login"/>
                 </div>}
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Название монеты:</label>
-                    <input onChange={onChangeCoin} value={coinInput} className='form-control mt-1' />
+                    <Autocomplete
+                        disablePortal
+
+                        id="combo-box-coinList"
+                        options={coinOptionsList}
+                        sx={{ width: 200 }}
+                        renderInput={(params) => <TextField {...params} label="Название монеты:" />}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Количество монет:</label>

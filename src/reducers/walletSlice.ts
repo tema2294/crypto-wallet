@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export interface CounterState {
     coinsWithFullData: any[]
     isLoading: boolean,
-    user?: any
+    user?: any,
+    coinOptionsList: any[]
 }
 
 const initialState: CounterState = {
     coinsWithFullData: [],
-    isLoading: true
+    isLoading: true,
+    coinOptionsList: []
 }
 
 export const walletSlice = createSlice({
@@ -24,16 +26,16 @@ export const walletSlice = createSlice({
             return state
         },
         loadAllCoins: (state) => {
+            state.coinsWithFullData = []
             return state
         },
-        authorize: (state,action:PayloadAction<{username: string,password: string}>) => {
+        authorize: (state,_action:PayloadAction<{username: string,password: string}>) => {
             return state
         },
         setLoading: (state,action:PayloadAction<boolean>) => {
             state.isLoading = action.payload
         },
         setUser: (state,action:PayloadAction<any>) => {
-            state.coinsWithFullData = []
             state.user = action.payload
         },
         updateUser: (state,action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins:any[] }>) => {
@@ -41,6 +43,19 @@ export const walletSlice = createSlice({
         },
         getUserInfo: (state)=> {
            return state
+        },
+        deleteCoin: (state,action:PayloadAction<string>)=> {
+          return state
+        },
+
+        setCoins: (state,action:PayloadAction<any[]>) => {
+            state.user = {...state.user,coins: action.payload}
+        },
+        loadCoinOptionsList: (state)=> {
+            return state
+        },
+        setCoinOptionsList: (state,action:PayloadAction<any[]>) => {
+            state.coinOptionsList = action.payload
         }
     },
 })

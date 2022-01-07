@@ -13,7 +13,12 @@ function App() {
     const isLoading = useSelector(isLoadingSelector)
     const dispatch = useDispatch()
 
+    const deleteCoin = (coinName:string) => {
+        dispatch(walletActions.deleteCoin(coinName))
+    }
+
     useEffect(()=>{
+        console.log(user)
         if (user) {
             dispatch(walletActions.loadAllCoins())
         }
@@ -22,7 +27,7 @@ function App() {
     return (
         <>
             <SumWidget width={300} coins={storeCoins} isLoading={isLoading} />
-            <CoinList coins={storeCoins} isLoading={isLoading}/>
+            <CoinList deleteCoin={deleteCoin} coins={storeCoins} isLoading={isLoading}/>
         </>
     );
 }

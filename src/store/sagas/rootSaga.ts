@@ -4,6 +4,8 @@ import {getAllCoinWatcher} from "./getAllCoins";
 import {authorizeWatcher} from "./authorize";
 import {updateUserWatcher} from "./updateUser";
 import {getUserInfoWatcher} from "./getUserInfo";
+import {deleteCoinWatcher} from "./deleteCoin";
+import {loadCoinOptionsListWatcher} from "./getCoinList";
 
 export default function* rootSaga() {
     yield all([
@@ -11,6 +13,9 @@ export default function* rootSaga() {
         getAllCoinWatcher(),
         authorizeWatcher(),
         updateUserWatcher(),
-        getUserInfoWatcher()
+        getUserInfoWatcher(),
+        deleteCoinWatcher(),
+        loadCoinOptionsListWatcher()
+
     ])
 }

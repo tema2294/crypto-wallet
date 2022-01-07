@@ -5,3 +5,4 @@ export const coinsWithFullInfoSelector = (store: RootState) => store.coinsWithFu
 export const coinsNameSelector = (store: RootState):string[] => store.user?.coins || []
 export const isLoadingSelector = (store: RootState):boolean => store.isLoading
 export const userSelector = (store: RootState):any => store.user
+export const coinOptionsListSelector = (store: RootState):any[] => store.coinOptionsList

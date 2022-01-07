@@ -1,8 +1,5 @@
 import {takeEvery, all, select, call, put} from 'redux-saga/effects'
 import { walletActions } from "../../reducers/walletSlice";
-import { getCoinWorker } from "./getCoin";
-import { coinsNameSelector } from "../selectors/selectors";
-import {apiHeroku} from "../../tools/api";
 import {updateUser} from "../services/updateUser";
 import {clearObject} from "../../tools/clearObject";
 
@@ -20,7 +17,6 @@ function* updateUserWorker(action: {payload: {username?: string,newUsername?:str
 
         if (user) {
             yield put(walletActions.setUser(user))
-
         }
 
         yield put(walletActions.setLoading(false))

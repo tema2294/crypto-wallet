@@ -19,10 +19,14 @@ const AppRouter = () => {
     const dispatch = useDispatch()
     const {pathname: location} = useLocation();
     const isLoginPage = location === '/login'
+
     useEffect(()=> {
+
         dispatch(walletActions.getUserInfo())
     },[])
+
     useEffect(() => {
+
         if (isLoginPage) {
             navigate('/');
         }

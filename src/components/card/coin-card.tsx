@@ -3,12 +3,15 @@ import {convertNumber} from "../../tools/convertNumber";
 import {PriceChangeTable} from "../price-change-table/price-change-table";
 
 export const CoinCard = (props: any) => {
-    const {data} = props
-    const { name,usdPrice,image,myInvestingUsd,myInvestingRub,market_data } = data
+    const {data,deleteCoin} = props
+    const { name,usdPrice,image,myInvestingUsd,myInvestingRub,market_data,id } = data
     const { small } = image
     const convertUsdPrice = convertNumber(usdPrice)
     const profitUsd = convertNumber(myInvestingUsd)
     const profitRub = convertNumber(myInvestingRub)
+    const deleteHandler = () => {
+        deleteCoin(id)
+    }
     return (
         <li className="card">
             <div className="card-header d-flex align-items-center">
@@ -22,6 +25,7 @@ export const CoinCard = (props: any) => {
                 <p className="card-text">Мой доход:  { profitUsd } $ </p>
                 <p className="card-text"> ( {profitRub} rub )</p>
                 <PriceChangeTable market_data={market_data} />
+                <button onClick={deleteHandler} className='button '>delete</button>
             </div>
         </li>
     )
