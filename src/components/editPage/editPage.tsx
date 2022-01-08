@@ -20,11 +20,11 @@ export const EditPage = () => {
     },[])
 
     const updateUser = () => {
-        dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput,count: countCoinInput}] }))
+        dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput.id,count: countCoinInput}] }))
     }
-
-    const onChangeCoin = (e:any) => {
-        setCoinInput(e.target?.value)
+    console.log(coinInput)
+    const onChangeCoin = (e:any, newValue:any) => {
+        setCoinInput(newValue)
     }
     const onChangOldName = (e:any) => {
         setUsernameInput(e.target?.value)
@@ -43,27 +43,26 @@ export const EditPage = () => {
             </label>
             <form className='login-form'>
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Новое имя:</label>
-                    <input onChange={onChangeNewUsername} value={newUsernameInput}  type="login" className="form-control" placeholder="Enter login"/>
+                    <TextField onChange={onChangeNewUsername} label='New name:' value={newUsernameInput}  placeholder="Enter new name"/>
                 </div>
                 {myRoleIsAdmin &&
-                <div className="form-group">
+                <div className="form-group mt-3 ">
 
-                    <TextField onChange={onChangOldName} value={usernameInput} placeholder="Enter login"/>
+                    <TextField onChange={onChangOldName} label='Old username' value={usernameInput} placeholder="old username"/>
                 </div>}
-                <div className="form-group">
+                <div className="form-group mt-3 ">
                     <Autocomplete
                         disablePortal
-
+                        value={coinInput}
+                        onChange={onChangeCoin}
                         id="combo-box-coinList"
                         options={coinOptionsList}
                         sx={{ width: 200 }}
-                        renderInput={(params) => <TextField {...params} label="Название монеты:" />}
+                        renderInput={(params) => <TextField {...params} label="Coin name:" />}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Количество монет:</label>
-                    <input onChange={onChangeCountCoin} value={countCoinInput} className='form-control mt-1' />
+                    <TextField label='Count coin' onChange={onChangeCountCoin} value={countCoinInput} className='mt-3' />
                 </div>
                 <Button onClick={updateUser} className='mt-5'>
                     Обновить

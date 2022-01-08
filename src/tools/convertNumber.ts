@@ -1,1 +1,1 @@
-export const convertNumber = (number: number) =>  Number(number.toFixed()).toLocaleString()
+export const convertNumber = (number: number,fractionDigits = 0) =>  Number(number.toFixed(fractionDigits)).toLocaleString()

@@ -6,7 +6,7 @@ export const CoinCard = (props: any) => {
     const {data,deleteCoin} = props
     const { name,usdPrice,image,myInvestingUsd,myInvestingRub,market_data,id } = data
     const { small } = image
-    const convertUsdPrice = convertNumber(usdPrice)
+    const convertUsdPrice = convertNumber(usdPrice,2)
     const profitUsd = convertNumber(myInvestingUsd)
     const profitRub = convertNumber(myInvestingRub)
     const deleteHandler = () => {
