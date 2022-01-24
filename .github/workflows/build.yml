@@ -22,5 +22,6 @@ jobs:
       - name: Install dependencies
         run:  yarn install
       - run: npm run build
+      - run: heroku git:remote -a personal-crypto-wallet
       - run: git push heroku master
 
