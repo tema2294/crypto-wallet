@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install
+        run:  yarn install
       - run: npm run build
-      -run: git push heroku master
+      - run: git push heroku master
+
