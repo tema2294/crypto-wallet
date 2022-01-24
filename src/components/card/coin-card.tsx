@@ -6,14 +6,14 @@ export const CoinCard = (props: any) => {
     const {data,deleteCoin} = props
     const { name,usdPrice,image,myInvestingUsd,myInvestingRub,market_data,id } = data
     const { small } = image
-    const convertUsdPrice = convertNumber(usdPrice,2)
+    const convertUsdPrice = convertNumber(usdPrice)
     const profitUsd = convertNumber(myInvestingUsd)
     const profitRub = convertNumber(myInvestingRub)
     const deleteHandler = () => {
         deleteCoin(id)
     }
     return (
-        <li className="card">
+        <div className="card">
             <div className="card-header d-flex align-items-center">
                 <div className='card-log-container'>
                     <img className='coin-image' src={small} />
@@ -21,12 +21,12 @@ export const CoinCard = (props: any) => {
                 <div className="card-title">{name}</div>
             </div>
             <div className="card-body">
-                <p className="card-text">Стоимость актива:  { convertUsdPrice } $</p>
-                <p className="card-text">Мой доход:  { profitUsd } $ </p>
+                <p className="card-text">Price:  { convertUsdPrice } $</p>
+                <p className="card-text">Investments:  { profitUsd } $ </p>
                 <p className="card-text"> ( {profitRub} rub )</p>
-                <PriceChangeTable market_data={market_data} />
-                <button onClick={deleteHandler} className='button '>delete</button>
+                    <PriceChangeTable market_data={market_data} />
+                {/*<button onClick={deleteHandler} className='button '>delete</button>*/}
             </div>
-        </li>
+        </div>
     )
 }

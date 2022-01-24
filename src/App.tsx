@@ -10,6 +10,7 @@ import {walletActions} from "./reducers/walletSlice";
 function App() {
     const user = useSelector(userSelector)
     const storeCoins = useSelector(coinsWithFullInfoSelector)
+
     const isLoading = useSelector(isLoadingSelector)
     const dispatch = useDispatch()
 
@@ -18,7 +19,6 @@ function App() {
     }
 
     useEffect(()=>{
-        console.log(user)
         if (user) {
             dispatch(walletActions.loadAllCoins())
         }
