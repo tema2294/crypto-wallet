@@ -29,6 +29,7 @@ jobs:
         # Build
       - name: Build
         run: npm run build
-        # Deploy
 
+        # Deploy
+      - run: npm publish
 
