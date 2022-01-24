@@ -21,14 +21,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn install
-          # Setup key
-          #  - run: set -eu
-          # - run: mkdir "$HOME/.ssh"
-          #  - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+        # Setup key
+        #  - run: set -eu
+        # - run: mkdir "$HOME/.ssh"
+        #  - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
 
-          # Build
-          - name: Build
-            run: npm run build
-          # Deploy
+        # Build
+      - name: Build
+        run: npm run build
+        # Deploy
 
 
