@@ -26,7 +26,7 @@ function App() {
 
     return (
         <>
-            <SumWidget width={301} coins={storeCoins} isLoading={isLoading} />
+            <SumWidget width={300} coins={storeCoins} isLoading={isLoading} />
             <CoinList deleteCoin={deleteCoin} coins={storeCoins} isLoading={isLoading}/>
         </>
     );
