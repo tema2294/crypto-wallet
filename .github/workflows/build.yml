@@ -31,5 +31,5 @@ jobs:
         run: npm run build
 
         # Deploy
-      - run: npm publish
+
 
