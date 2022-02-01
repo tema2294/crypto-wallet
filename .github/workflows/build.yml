@@ -30,11 +30,11 @@ jobs:
       - name: Build
         run: npm run build
 
-        # Deploy
-       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        env:
-        SSH_PRIVATE_KEY: git@github.com:tema2294/tema2294.github.io.git
+#        # Deploy
+#       - name: Deploy to Server
+#        uses: easingthemes/ssh-deploy@main
+#        env:
+#        SSH_PRIVATE_KEY: git@github.com:tema2294/tema2294.github.io.git
 
 
 
