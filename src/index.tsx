@@ -1,59 +1,16 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
-import App from './App';
 import Header from './components/header/header';
-import {BrowserRouter, Route, Routes, useNavigate ,Navigate, useLocation} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import PageContainer from "./components/content-container/pageContainer";
 import {store} from './store/store';
-import {Provider, useDispatch, useSelector} from 'react-redux';
-import {EditPage} from "./components/editPage/editPage";
-import LoginPage from "./components/login-page/loginPage";
-import {userSelector} from "./store/selectors/selectors";
-import {walletActions} from "./reducers/walletSlice";
+import {Provider} from 'react-redux';
+import AppRouter from './routes/router';
+import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
-const AppRouter = () => {
-    const user = useSelector(userSelector)
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const {pathname: location} = useLocation();
-    const isLoginPage = location === '/login'
-
-    useEffect(()=> {
-
-        dispatch(walletActions.getUserInfo())
-    },[])
-
-    useEffect(() => {
-
-        if (isLoginPage) {
-            navigate('/');
-        }
-    }, [user])
-
-    return (
-        <Routes>
-            {
-                user ?
-                    <>
-                        <Route path="/" element={<App/>}/>
-                        <Route path='edit-page' element={<EditPage/>}/>
-                        <Route path='login' element={<LoginPage/>}/>
-                    </>
-                    :
-                    <>
-                        <Route path='login' element={<LoginPage/>}/>
-                        <Route
-                            path="*"
-                            element={<Navigate to="login" />}
-                        />
-                    </>
-            }
-
-        </Routes>
-    )
-}
 
 ReactDOM.render(
     <React.StrictMode>
@@ -63,6 +20,15 @@ ReactDOM.render(
                 <PageContainer>
                     <AppRouter/>
                 </PageContainer>
+                <ToastContainer position="bottom-right"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick={false}
+                                rtl={false}
+                                pauseOnFocusLoss={false}
+                                draggable
+                                pauseOnHover />
             </BrowserRouter>
         </Provider>
     </React.StrictMode>,

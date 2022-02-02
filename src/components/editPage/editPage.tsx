@@ -3,8 +3,9 @@ import React, {useEffect, useState} from "react";
 import {AppDispatch} from "../../store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {walletActions} from "../../reducers/walletSlice";
-import {coinOptionsListSelector, userSelector} from "../../store/selectors/selectors";
+import {coinOptionsListSelector, isLoadingSelector, userSelector} from "../../store/selectors/selectors";
 import { Autocomplete, TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 export const EditPage = () => {
     const [coinInput,setCoinInput] = useState<any>('')
@@ -15,14 +16,17 @@ export const EditPage = () => {
     const dispatch: AppDispatch = useDispatch()
     const myRoleIsAdmin = useSelector(userSelector)?.roles?.includes('ADMIN')
     const coinOptionsList = useSelector(coinOptionsListSelector)
+    const isLoading = useSelector(isLoadingSelector)
+
     useEffect(()=> {
         dispatch(walletActions.loadCoinOptionsList())
     },[])
 
     const updateUser = () => {
         dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput.id,count: countCoinInput}] }))
+        toast("Your coin will be added soon!");
+
     }
-    console.log(coinInput)
     const onChangeCoin = (e:any, newValue:any) => {
         setCoinInput(newValue)
     }
@@ -37,19 +41,17 @@ export const EditPage = () => {
     }
 
     return (
-        <div className='p-5'>
-            <label>
-                Введите название монеты:
-            </label>
+        <div className='p-5 editPage-container'>
+
             <form className='login-form'>
-                <div className="form-group">
+                {myRoleIsAdmin &&
+                <div className="form-group ">
+                    <TextField onChange={onChangOldName} label='Username' value={usernameInput} placeholder="old username"/>
+                </div>}
+                <div className="form-group mt-3">
                     <TextField onChange={onChangeNewUsername} label='New name:' value={newUsernameInput}  placeholder="Enter new name"/>
                 </div>
-                {myRoleIsAdmin &&
-                <div className="form-group mt-3 ">
 
-                    <TextField onChange={onChangOldName} label='Old username' value={usernameInput} placeholder="old username"/>
-                </div>}
                 <div className="form-group mt-3 ">
                     <Autocomplete
                         disablePortal
@@ -64,7 +66,7 @@ export const EditPage = () => {
                 <div className="form-group">
                     <TextField label='Count coin' onChange={onChangeCountCoin} value={countCoinInput} className='mt-3' />
                 </div>
-                <Button onClick={updateUser} className='mt-5'>
+                <Button disabled={isLoading} onClick={updateUser} className='mt-5'>
                     Обновить
                 </Button>
             </form>

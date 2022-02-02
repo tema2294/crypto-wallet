@@ -9,6 +9,7 @@ export const CoinCard = (props: any) => {
     const convertUsdPrice = convertNumber(usdPrice)
     const profitUsd = convertNumber(myInvestingUsd)
     const profitRub = convertNumber(myInvestingRub)
+
     const deleteHandler = () => {
         deleteCoin(id)
     }
@@ -25,7 +26,7 @@ export const CoinCard = (props: any) => {
                 <p className="card-text">Investments:  { profitUsd } $ </p>
                 <p className="card-text"> ( {profitRub} rub )</p>
                     <PriceChangeTable market_data={market_data} />
-                {/*<button onClick={deleteHandler} className='button '>delete</button>*/}
+                <button onClick={deleteHandler} className='btn-delete'>Х</button>
             </div>
         </div>
     )

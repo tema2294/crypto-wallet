@@ -1,4 +1,4 @@
-import {takeEvery, all, select, call, put} from 'redux-saga/effects'
+import {takeEvery, call, put} from 'redux-saga/effects'
 import { walletActions } from "../../reducers/walletSlice";
 import {updateUser} from "../services/updateUser";
 import {clearObject} from "../../tools/clearObject";
