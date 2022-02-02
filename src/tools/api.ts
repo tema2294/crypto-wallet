@@ -5,6 +5,7 @@ import axios from "axios"
 
 export const apiCoinGecko = axios.create({
     baseURL: baseUrlCoinGecko + `api/v3/`,
+
 })
 
 export const apiHeroku = axios.create({
