@@ -5,8 +5,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import {userSelector} from "../store/selectors/selectors";
 import {walletActions} from "../reducers/walletSlice";
 import '../index.css';
-import UnauthorizedRoutes from "./authorize-routes";
-import AuthorizeRoutes from './unauthorized-routes';
+import AuthorizeRoutes from './authorized-routes';
+import UnauthorizedRoutes from './unauthorize-routes';
+
 
 const AppRouter = () => {
     const user = useSelector(userSelector)

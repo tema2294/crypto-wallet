@@ -22,6 +22,11 @@ const Header = () => {
                             Edit list
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className='nav-link' to={'chatPage'}>
+                            Chat
+                        </Link>
+                    </li>
                 </ul>
             </nav>
             {username &&
