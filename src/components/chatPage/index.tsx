@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import './app.scss'
 const ChatPage = () => {
     const [messages, setMessages] = useState<any>([]);
@@ -8,8 +8,8 @@ const ChatPage = () => {
     const [username, setUsername] = useState('')
 
     function connect() {
-        socket.current = new WebSocket('ws://localhost:5050')
 
+        socket.current = new WebSocket('ws://fast-headland-89130.herokuapp.com/')
         socket.current.onopen = () => {
             setConnected(true)
             const message = {
