@@ -2,13 +2,14 @@ import {takeEvery, call, put} from 'redux-saga/effects'
 import { walletActions } from "../../reducers/walletSlice";
 import {updateUser} from "../services/updateUser";
 import {clearObject} from "../../tools/clearObject";
+import {IUserCoinList} from "../../components/interfaces/server-types";
 
 
 export function* updateUserWatcher() {
     yield takeEvery(walletActions.updateUser, updateUserWorker);
 }
 
-function* updateUserWorker(action: {payload: {username?: string,newUsername?:string,password?: string,coins?:any[]}}) {
+function* updateUserWorker(action: {payload: {username?: string,newUsername?:string,password?: string,coins?:IUserCoinList}}) {
     try {
         yield put(walletActions.setLoading(true))
 

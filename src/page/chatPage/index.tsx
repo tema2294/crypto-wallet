@@ -8,7 +8,6 @@ const ChatPage = () => {
     const [username, setUsername] = useState('')
 
     function connect() {
-
         socket.current = new WebSocket('ws://fast-headland-89130.herokuapp.com/')
         socket.current.onopen = () => {
             setConnected(true)
@@ -57,7 +56,7 @@ const ChatPage = () => {
             </div>
         )
     }
-
+ 
 
     return (
         <div className="container-chat">

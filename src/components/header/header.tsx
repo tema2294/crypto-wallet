@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import logo from '../../logo.svg';
-
 import './style.scss'
 import {useSelector} from "react-redux";
 import {userSelector} from "../../store/selectors/selectors";

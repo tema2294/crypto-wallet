@@ -1,6 +1,6 @@
 import './style.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import React, { useState } from "react";
 import {walletActions} from "../../reducers/walletSlice";
 import {isLoadingSelector} from "../../store/selectors/selectors";
 
@@ -11,16 +11,16 @@ const LoginPage = () => {
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
 
-    const onChangeLogin = (event: any) => {
+    const onChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
        const { value } =  event.target
         setUsername(value)
     }
-    const onChangePassword = (event: any) => {
+    const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
        const { value } =  event.target
         setPassword(value)
     }
 
-    const handleLogin = (event: any) => {
+    const handleLogin = (event:any) => {
         event.preventDefault();
         dispatch(walletActions.authorize({username,password}))
     }
@@ -28,7 +28,7 @@ const LoginPage = () => {
        <div className='login-container'>
         <form className='login-form'>
             <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
+                <label htmlFor="exampleInputEmail1">Email address:</label>
                 <input disabled={isLoading} onChange={onChangeLogin} value={username}  type="login" className="form-control" placeholder="Enter login"/>
             </div>
             <div className="form-group">

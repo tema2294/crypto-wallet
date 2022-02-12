@@ -6,6 +6,7 @@ import {walletActions} from "../../reducers/walletSlice";
 import {coinOptionsListSelector, isLoadingSelector, userSelector} from "../../store/selectors/selectors";
 import { Autocomplete, TextField } from "@mui/material";
 import { toast } from "react-toastify";
+import { toastSuccessAddCoin } from "../../constants/toastTexts";
 
 export const EditPage = () => {
     const [coinInput,setCoinInput] = useState<any>('')
@@ -24,19 +25,18 @@ export const EditPage = () => {
 
     const updateUser = () => {
         dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput.id,count: countCoinInput}] }))
-        toast("Your coin will be added soon!");
-
+        toast(toastSuccessAddCoin);
     }
     const onChangeCoin = (e:any, newValue:any) => {
         setCoinInput(newValue)
     }
-    const onChangOldName = (e:any) => {
+    const onChangOldName = (e:React.ChangeEvent<HTMLInputElement>) => {
         setUsernameInput(e.target?.value)
     }
-    const onChangeNewUsername = (e:any) => {
+    const onChangeNewUsername = (e:React.ChangeEvent<HTMLInputElement>) => {
         setNewUsernameInput(e.target?.value)
     }
-    const onChangeCountCoin = (e:any) => {
+    const onChangeCountCoin = (e:React.ChangeEvent<HTMLInputElement>) => {
         setCountCoinInput(e.target?.value)
     }
 

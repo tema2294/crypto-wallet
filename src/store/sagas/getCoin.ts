@@ -1,17 +1,18 @@
 import {put, takeEvery, call} from 'redux-saga/effects'
 import {walletActions} from "../../reducers/walletSlice";
 import {getCoin} from "../services/getCoinService";
+import {ICoin, IUserCoinInfo} from "../../components/interfaces/server-types";
 
 
 export function* getCoinWatcher() {
-    yield takeEvery(walletActions.addCoin, getCoinWorker);
+    yield takeEvery(walletActions.getCoin, getCoinWorker);
 }
 
-export function* getCoinWorker(action: { payload: any }) {
+export function* getCoinWorker(action: { payload: IUserCoinInfo }) {
     try {
         yield put(walletActions.setLoading(true))
         const { coinName, count } = action.payload
-        const response: { [key: string]: any } = yield call(getCoin, coinName);
+        const response: { data: ICoin } = yield call(getCoin, coinName);
         const { market_data } = response.data
         const { current_price } = market_data
         const { usd ,rub } = current_price

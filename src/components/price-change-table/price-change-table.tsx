@@ -1,6 +1,10 @@
 import './style.scss'
+import {IMarketData} from "../interfaces/server-types";
 
-export const PriceChangeTable = (props: { market_data: any }) => {
+interface IPriceChangeTable {
+    market_data: IMarketData
+}
+export const PriceChangeTable = (props: IPriceChangeTable) => {
     const {
         price_change_24h,
         price_change_percentage_24h,

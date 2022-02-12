@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {coinsWithFullInfoSelector, isLoadingSelector, userSelector } from "../../store/selectors/selectors";
-import {CoinList} from "../coinList/coinList";
-import {SumWidget} from "../sumWidget/sumWidget";
+import {CoinList} from "../../components/coinList/coinList";
+import {SumWidget} from "../../components/sumWidget/sumWidget";
 import {walletActions} from "../../reducers/walletSlice";
 import './style.css';
 

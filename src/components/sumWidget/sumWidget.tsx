@@ -1,7 +1,8 @@
 import { WidgetContainer } from "../widget-container/widgetContainer"
 import {convertNumber} from "../../tools/convertNumber";
+import {ICoinList} from "../interfaces/server-types";
 
-export const SumWidget = (props: {coins: any[], width: number,isLoading: boolean}) => {
+export const SumWidget = (props: {coins: ICoinList, width: number,isLoading: boolean}) => {
     const {coins,width,isLoading} = props
     let sumRub = 0
     let sumUsd = 0

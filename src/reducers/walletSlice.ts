@@ -1,10 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+    ICoin,
+    ICoinList,
+    ICoinOptionsList,
+    IUser,
+    IUserCoinInfo,
+    IUserCoinList
+} from "../components/interfaces/server-types";
 
 export interface CounterState {
-    coinsWithFullData: any[]
+    coinsWithFullData: ICoinList
     isLoading: boolean,
-    user?: any,
-    coinOptionsList: any[]
+    user?: IUser,
+    coinOptionsList: ICoinOptionsList
 }
 
 const initialState: CounterState = {
@@ -18,11 +26,11 @@ export const walletSlice = createSlice({
     initialState,
     reducers: {
 
-        addCoinWithFullInfo: (state,action: PayloadAction<any>) => {
+        addCoinWithFullInfo: (state,action: PayloadAction<ICoin>) => {
             const coin  = action.payload
             state.coinsWithFullData = [...state.coinsWithFullData , coin]
         },
-        addCoin: (state)=> {
+        getCoin: (state,_action:PayloadAction<IUserCoinInfo>)=> {
             return state
         },
         loadAllCoins: (state) => {
@@ -35,26 +43,28 @@ export const walletSlice = createSlice({
         setLoading: (state,action:PayloadAction<boolean>) => {
             state.isLoading = action.payload
         },
-        setUser: (state,action:PayloadAction<any>) => {
+        setUser: (state,action:PayloadAction<IUser>) => {
             state.user = action.payload
         },
-        updateUser: (state,action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins:any[] }>) => {
+        updateUser: (state,_action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins:any[] }>) => {
             return state
         },
         getUserInfo: (state)=> {
            return state
         },
-        deleteCoin: (state,action:PayloadAction<string>)=> {
+        deleteCoin: (state,_action:PayloadAction<string>)=> {
           return state
         },
 
-        setCoins: (state,action:PayloadAction<any[]>) => {
-            state.user = {...state.user,coins: action.payload}
+        setCoins: (state,action:PayloadAction<IUserCoinList>) => {
+            if (state.user) {
+                state.user = {...state.user,coins: action.payload}
+            }
         },
         loadCoinOptionsList: (state)=> {
             return state
         },
-        setCoinOptionsList: (state,action:PayloadAction<any[]>) => {
+        setCoinOptionsList: (state,action:PayloadAction<ICoinOptionsList>) => {
             state.coinOptionsList = action.payload
         }
     },

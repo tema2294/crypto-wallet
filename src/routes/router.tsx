@@ -13,6 +13,7 @@ const AppRouter = () => {
     const user = useSelector(userSelector)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const { pathname: location } = useLocation();
     const isLoginPage = location === '/login'
 
