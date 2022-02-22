@@ -21,6 +21,7 @@ export interface ICoin {
     myInvestingRub:number,
     market_data: IMarketData,
     id:string
+    symbol: string
 }
 
 export type ICoinList = ICoin[]
