@@ -1,0 +1,30 @@
+.parent-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-update-coin {
+  width: fit-content;
+  height: fit-content;
+  background: white;
+  outline: none;
+  border: 2px solid #4d4d4d;
+  display: grid;
+  padding: 10vh 5vw;
+}
+.card-log-container {
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+}
+.card-title {
+  margin: 0 0 0 5px;
+  font-size: 20px;
+  font-weight: bold;
+  min-height: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}

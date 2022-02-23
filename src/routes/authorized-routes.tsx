@@ -9,7 +9,7 @@ const AuthorizeRoutes = () => {
         <Routes>
             <Route path="/" element={<MainPage/>}/>
             <Route path='edit-page' element={<EditPage/>}/>
-            <Route path='chatPage' element={<ChatPage/>}/>
+            {/*<Route path='chatPage' element={<ChatPage/>}/>*/}
             <Route
                 path="*"
                 element={<Navigate to="/" />}

@@ -9,8 +9,10 @@ export interface IMarketData {
 export interface IUserCoinInfo {
     coinName: string,
     count: number,
+    updatedCase?: true
 }
 export type IUserCoinList = IUserCoinInfo[]
+
 export interface ICoin {
     coinName: string,
     count: number
@@ -40,5 +42,9 @@ interface ICoinOptions {
     symbol:string
     name:string
     label:string
+}
+export interface IModalUpdateCoin {
+    isVisible: boolean,
+    coin?: ICoin
 }
 export type ICoinOptionsList = ICoinOptions[]

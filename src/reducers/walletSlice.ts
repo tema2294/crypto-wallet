@@ -3,6 +3,7 @@ import {
     ICoin,
     ICoinList,
     ICoinOptionsList,
+    IModalUpdateCoin,
     IUser,
     IUserCoinInfo,
     IUserCoinList
@@ -13,12 +14,16 @@ export interface CounterState {
     isLoading: boolean,
     user?: IUser,
     coinOptionsList: ICoinOptionsList
+    modalUpdateCoin : IModalUpdateCoin
 }
 
 const initialState: CounterState = {
     coinsWithFullData: [],
     isLoading: true,
-    coinOptionsList: []
+    coinOptionsList: [],
+    modalUpdateCoin : {
+        isVisible: false
+    }
 }
 
 export const walletSlice = createSlice({
@@ -29,6 +34,15 @@ export const walletSlice = createSlice({
         addCoinWithFullInfo: (state,action: PayloadAction<ICoin>) => {
             const coin  = action.payload
             state.coinsWithFullData = [...state.coinsWithFullData , coin]
+        },
+        updateCoinWithFullInfo: (state,action: PayloadAction<ICoin>) => {
+            const updateCoin  = action.payload
+            state.coinsWithFullData = state.coinsWithFullData.map((coin)=>{
+                const isUpdateCoin = coin.id === updateCoin.id
+                if (isUpdateCoin) {
+                    return updateCoin
+                } else return coin
+            })
         },
         getCoin: (state,_action:PayloadAction<IUserCoinInfo>)=> {
             return state
@@ -66,6 +80,12 @@ export const walletSlice = createSlice({
         },
         setCoinOptionsList: (state,action:PayloadAction<ICoinOptionsList>) => {
             state.coinOptionsList = action.payload
+        },
+        setModalUpdate : (state,action:PayloadAction<IModalUpdateCoin>) => {
+          state.modalUpdateCoin =  {...state.modalUpdateCoin,...action.payload}
+        },
+        updateCoin: (state,_action: PayloadAction<{ count:number, coinId: string }>) => {
+            return state
         }
     },
 })

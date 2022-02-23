@@ -1,7 +1,11 @@
 import {CoinCard} from "../card/coin-card";
 import React from "react";
 import { WidgetContainer} from "../widget-container/widgetContainer";
-import { ICoinList } from "../interfaces/server-types";
+import {ICoin, ICoinList } from "../interfaces/server-types";
+import {ModalUpdateCoin} from "../modal/modal-update-coin";
+import {useDispatch} from "react-redux";
+import {walletActions} from "../../reducers/walletSlice";
+import {isVisible} from "@testing-library/user-event/dist/utils";
 
 interface ICoinListComponent {
     coins: ICoinList,
@@ -12,8 +16,12 @@ interface ICoinListComponent {
 
 export const CoinList = (props: ICoinListComponent ) => {
     const {coins, isLoading, deleteCoin} = props
+    const dispatch = useDispatch()
+
     const isCoinsListEmpty = coins.length === 0 && !isLoading
     const isCoinsListNotEmpty = coins.length !== 0 && !isLoading
+
+    const openUpdateModal = (coin: ICoin)=>  dispatch(walletActions.setModalUpdate({isVisible: true, coin}))
     return (
         <WidgetContainer isLoading={isLoading}>
             {isCoinsListEmpty &&
@@ -21,8 +29,9 @@ export const CoinList = (props: ICoinListComponent ) => {
             }
             {isCoinsListNotEmpty &&
             <div className='card-container'>
-                {coins.map((data) => <CoinCard deleteCoin={deleteCoin} key={data.name} data={data}/>)}
+                {coins.map((data) => <CoinCard deleteCoin={deleteCoin} openUpdateModal={openUpdateModal} key={data.name} data={data}/>)}
             </div>}
+            <ModalUpdateCoin />
         </WidgetContainer>
     )
 }

@@ -6,6 +6,7 @@ import {updateUserWatcher} from "./updateUser";
 import {getUserInfoWatcher} from "./getUserInfo";
 import {deleteCoinWatcher} from "./deleteCoin";
 import {loadCoinOptionsListWatcher} from "./getCoinList";
+import {updateCoinWatcher} from "./updateCoin";
 
 export default function* rootSaga() {
     yield all([
@@ -15,7 +16,7 @@ export default function* rootSaga() {
         updateUserWatcher(),
         getUserInfoWatcher(),
         deleteCoinWatcher(),
-        loadCoinOptionsListWatcher()
-
+        loadCoinOptionsListWatcher(),
+        updateCoinWatcher()
     ])
 }
