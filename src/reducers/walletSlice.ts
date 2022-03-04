@@ -3,7 +3,7 @@ import {
     ICoin,
     ICoinList,
     ICoinOptionsList,
-    IModalUpdateCoin,
+    IModalUpdateCoin, IOtherInvestments,
     IUser,
     IUserCoinInfo,
     IUserCoinList
@@ -60,7 +60,7 @@ export const walletSlice = createSlice({
         setUser: (state,action:PayloadAction<IUser>) => {
             state.user = action.payload
         },
-        updateUser: (state,_action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins:any[] }>) => {
+        updateUser: (state,_action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins?:any[],otherInvestments? : IOtherInvestments }>) => {
             return state
         },
         getUserInfo: (state)=> {

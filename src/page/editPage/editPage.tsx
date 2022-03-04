@@ -4,7 +4,7 @@ import {AppDispatch} from "../../store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {walletActions} from "../../reducers/walletSlice";
 import {coinOptionsListSelector, isLoadingSelector, userSelector} from "../../store/selectors/selectors";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Checkbox, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import { toastSuccessAddCoin } from "../../constants/toastTexts";
 
@@ -13,6 +13,9 @@ export const EditPage = () => {
     const [usernameInput,setUsernameInput] = useState('')
     const [newUsernameInput,setNewUsernameInput] = useState('')
     const [countCoinInput,setCountCoinInput] = useState('')
+    const [investmentName,setInvestmentName] = useState('')
+    const [count,setCount] = useState<number>(0)
+    const [isUsd,setIsUsd] = useState(false)
 
     const dispatch: AppDispatch = useDispatch()
     const myRoleIsAdmin = useSelector(userSelector)?.roles?.includes('ADMIN')
@@ -24,7 +27,12 @@ export const EditPage = () => {
     },[])
 
     const updateUser = () => {
-        dispatch(walletActions.updateUser({username:usernameInput,newUsername:newUsernameInput,coins: [{coinName: coinInput.id,count: countCoinInput}] }))
+        const isFullOtherInvestments = investmentName && count && isUsd
+        const otherInvestments = isFullOtherInvestments ? {investmentName , count , isUsd} : undefined
+        const username =  usernameInput.length > 0 ? usernameInput : undefined
+        const newUsername =  newUsernameInput.length > 0 ? newUsernameInput : undefined
+        const coins =  coinInput.id && countCoinInput ? [{coinName: coinInput.id,count: countCoinInput}] : undefined
+        dispatch(walletActions.updateUser({username,newUsername,coins,otherInvestments }))
         toast(toastSuccessAddCoin);
     }
     const onChangeCoin = (e:any, newValue:any) => {
@@ -65,6 +73,11 @@ export const EditPage = () => {
                 </div>
                 <div className="form-group">
                     <TextField label='Count coin' onChange={onChangeCountCoin} value={countCoinInput} className='mt-3' />
+                </div>
+                <div className="form-group">
+                    <TextField  label='Investment name' onChange={(e)=>setInvestmentName(e.target.value)} value={investmentName} className='mt-3' />
+                    <TextField label='Count' type={'number'} onChange={(e:any)=>setCount(e.target?.value)} value={count} className='mt-3' />
+                    <Checkbox value={isUsd} onChange={(e)=>setIsUsd(e.target.checked)}/>
                 </div>
                 <Button disabled={isLoading} onClick={updateUser} className='mt-5'>
                     Обновить

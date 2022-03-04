@@ -2,7 +2,6 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "../page/mainPage";
 import {EditPage} from "../page/editPage/editPage";
 import React from "react";
-import ChatPage from "../page/chatPage";
 
 const AuthorizeRoutes = () => {
     return (

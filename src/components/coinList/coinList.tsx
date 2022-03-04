@@ -5,7 +5,6 @@ import {ICoin, ICoinList } from "../interfaces/server-types";
 import {ModalUpdateCoin} from "../modal/modal-update-coin";
 import {useDispatch} from "react-redux";
 import {walletActions} from "../../reducers/walletSlice";
-import {isVisible} from "@testing-library/user-event/dist/utils";
 
 interface ICoinListComponent {
     coins: ICoinList,

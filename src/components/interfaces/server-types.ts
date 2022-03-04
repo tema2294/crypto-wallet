@@ -28,14 +28,22 @@ export interface ICoin {
 
 export type ICoinList = ICoin[]
 
+export interface IOtherInvestments {
+    investmentName: string,
+    isUsd: boolean,
+    count: number
+}
 export type IRole = string
 export type IRoleList = IRole[]
+export type IOtherInvestmentsList = IOtherInvestments[]
+
 
 export interface IUser {
     username: string,
     password: string,
-    roles: IRoleList
-    coins: IUserCoinList
+    roles: IRoleList,
+    coins: IUserCoinList,
+    otherInvestments: IOtherInvestmentsList
 }
 interface ICoinOptions {
     id:string
