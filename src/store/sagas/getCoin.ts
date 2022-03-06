@@ -21,7 +21,6 @@ export function* getCoinWorker(action: { payload: IUserCoinInfo }) {
             yield put(walletActions.updateCoinWithFullInfo(coinFullData))
         } else {
             yield put(walletActions.addCoinWithFullInfo(coinFullData))
-
         }
         yield put(walletActions.setLoading(false))
 

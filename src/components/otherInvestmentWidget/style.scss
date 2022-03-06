@@ -1,6 +1,9 @@
-.daily-rating-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+.investment-li {
+ position: relative;
+}
+.btn-delete {
+ position: absolute;
+ top: 50%;
+ right: 0;
+ transform: translateY(-50%);
 }

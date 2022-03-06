@@ -31,7 +31,8 @@ export type ICoinList = ICoin[]
 export interface IOtherInvestments {
     investmentName: string,
     isUsd: boolean,
-    count: number
+    count: number,
+    _id: string,
 }
 export type IRole = string
 export type IRoleList = IRole[]

@@ -3,7 +3,7 @@ import {
     ICoin,
     ICoinList,
     ICoinOptionsList,
-    IModalUpdateCoin, IOtherInvestments,
+    IModalUpdateCoin, IOtherInvestments, IOtherInvestmentsList,
     IUser,
     IUserCoinInfo,
     IUserCoinList
@@ -15,6 +15,7 @@ export interface CounterState {
     user?: IUser,
     coinOptionsList: ICoinOptionsList
     modalUpdateCoin : IModalUpdateCoin
+    usdPrice: number
 }
 
 const initialState: CounterState = {
@@ -23,7 +24,8 @@ const initialState: CounterState = {
     coinOptionsList: [],
     modalUpdateCoin : {
         isVisible: false
-    }
+    },
+    usdPrice: 100,
 }
 
 export const walletSlice = createSlice({
@@ -34,6 +36,9 @@ export const walletSlice = createSlice({
         addCoinWithFullInfo: (state,action: PayloadAction<ICoin>) => {
             const coin  = action.payload
             state.coinsWithFullData = [...state.coinsWithFullData , coin]
+        },
+        setUsdPrice: (state,action: PayloadAction<number>) => {
+            state.usdPrice = action.payload
         },
         updateCoinWithFullInfo: (state,action: PayloadAction<ICoin>) => {
             const updateCoin  = action.payload
@@ -57,16 +62,25 @@ export const walletSlice = createSlice({
         setLoading: (state,action:PayloadAction<boolean>) => {
             state.isLoading = action.payload
         },
+
         setUser: (state,action:PayloadAction<IUser>) => {
             state.user = action.payload
         },
-        updateUser: (state,_action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins?:any[],otherInvestments? : IOtherInvestments }>) => {
+        setOtherInvestments: (state,action:PayloadAction<IOtherInvestmentsList>) => {
+            if (state.user) {
+                state.user.otherInvestments = action.payload
+            }
+        },
+        updateUser: (state,_action:PayloadAction<{ username?:string,newUsername?:string,password?:string,coins?:any[],otherInvestments? :Omit<IOtherInvestments, "_id">  }>) => {
             return state
         },
         getUserInfo: (state)=> {
            return state
         },
         deleteCoin: (state,_action:PayloadAction<string>)=> {
+          return state
+        },
+        deleteOtherInvestment: (state,_action:PayloadAction<string>)=> {
           return state
         },
 
