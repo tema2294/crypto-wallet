@@ -36,7 +36,7 @@ export const OtherInvestmentWidget = (props: { width: number, isLoading: boolean
                                 <span className={'investment-usd'}>{ convertNumber(usd) } $</span> /
                                 <span className={'investment-rub'}>{  convertNumber(rub) } ₽</span>
                             </div>
-                            <button onClick={()=>deleteOtherInvestment(investment._id)} className='btn-delete'>Х</button>
+                            <button onClick={()=>deleteOtherInvestment(investment._id)} className='other_investments-btn-delete'>Х</button>
 
                         </li>
                     )

@@ -1,9 +1,12 @@
 .investment-li {
  position: relative;
 }
-.btn-delete {
+.other_investments-btn-delete {
  position: absolute;
  top: 50%;
  right: 0;
  transform: translateY(-50%);
+ background: none;
+ border: none;
+ font-size: 10px;
 }
