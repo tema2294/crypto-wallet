@@ -27,7 +27,7 @@ export const EditPage = () => {
     },[])
 
     const updateUser = () => {
-        const isFullOtherInvestments = investmentName.length > 0 && count > 0 && isUsd
+        const isFullOtherInvestments = investmentName.length > 0 && count > 0
         const otherInvestments = isFullOtherInvestments ? {investmentName , count , isUsd} : undefined
         const username =  usernameInput.length > 0 ? usernameInput : undefined
         const newUsername =  newUsernameInput.length > 0 ? newUsernameInput : undefined
