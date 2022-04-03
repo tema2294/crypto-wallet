@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 3rem;
 }
 
 
@@ -17,5 +18,12 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 800px) {
+  .page-container {
+    margin: 0;
+    padding: 20px 10px;
   }
 }

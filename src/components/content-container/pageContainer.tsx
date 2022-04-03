@@ -8,7 +8,7 @@ interface IPageContainer {
 const PageContainer = (props: IPageContainer) => {
     const {children} = props
     return (
-        <div className='page-container p-5'>
+        <div className='page-container'>
             {children}
         </div>
     )

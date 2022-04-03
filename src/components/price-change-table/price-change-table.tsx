@@ -6,7 +6,6 @@ interface IPriceChangeTable {
 }
 export const PriceChangeTable = (props: IPriceChangeTable) => {
     const {
-        price_change_24h,
         price_change_percentage_24h,
         price_change_percentage_7d,
         price_change_percentage_30d,
@@ -15,7 +14,6 @@ export const PriceChangeTable = (props: IPriceChangeTable) => {
         <table className="table table-price-change">
             <thead>
             <tr>
-                <th scope="col">1h</th>
                 <th scope="col">24h</th>
                 <th scope="col">7d</th>
                 <th scope="col">30d</th>
@@ -23,7 +21,6 @@ export const PriceChangeTable = (props: IPriceChangeTable) => {
             </thead>
             <tbody>
             <tr>
-                <td>{price_change_24h.toFixed(1)} %</td>
                 <td>{price_change_percentage_24h.toFixed()} %</td>
                 <td>{price_change_percentage_7d.toFixed()} %</td>
                 <td>{price_change_percentage_30d.toFixed()} %</td>

@@ -10,3 +10,11 @@
  .card-table {
      margin-top: auto;
  }
+
+
+@media (max-width: 800px) {
+    .card-container {
+        grid-template-columns: 1fr;
+
+    }
+}
