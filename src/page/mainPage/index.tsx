@@ -26,8 +26,8 @@ function MainPage() {
 
     return (
         <>
-                <SumWidget width={301} coins={storeCoins} isLoading={isLoading}/>
-                <OtherInvestmentWidget isLoading={isLoading} width={301}/>
+            <SumWidget width={301} coins={storeCoins} isLoading={isLoading}/>
+            <OtherInvestmentWidget isLoading={isLoading} width={301}/>
             <CoinList deleteCoin={deleteCoin} coins={storeCoins} isLoading={isLoading}/>
         </>
     );

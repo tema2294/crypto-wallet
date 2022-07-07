@@ -11,7 +11,7 @@ export const WidgetContainer = (props: IWidgetContainer)=> {
     const { width,isLoading,children } = props
 
     return (
-        <div style={{width: width || '100%'}} className='justify-content-center d-flex widget-container'>
+        <div style={{width: width || '100%'}} className='justify-content-center d-flex widget-container flex-column '>
             {children}
             {isLoading &&
             <div className='loader-container'>

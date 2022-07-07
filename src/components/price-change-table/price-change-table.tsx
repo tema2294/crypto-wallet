@@ -21,9 +21,9 @@ export const PriceChangeTable = (props: IPriceChangeTable) => {
             </thead>
             <tbody>
             <tr>
-                <td>{price_change_percentage_24h.toFixed()} %</td>
-                <td>{price_change_percentage_7d.toFixed()} %</td>
-                <td>{price_change_percentage_30d.toFixed()} %</td>
+                <td>{price_change_percentage_24h?.toFixed()} %</td>
+                <td>{price_change_percentage_7d?.toFixed()} %</td>
+                <td>{price_change_percentage_30d?.toFixed()} %</td>
             </tr>
             </tbody>
         </table>

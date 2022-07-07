@@ -14,15 +14,15 @@ export const OtherInvestmentWidget = (props: { width: number, isLoading: boolean
     const dispatch = useDispatch()
     let allUsd = 0
     let allRub = 0
-    const deleteOtherInvestment = (id:string)=> dispatch(walletActions.deleteOtherInvestment(id))
+    const deleteOtherInvestment = (id: string) => dispatch(walletActions.deleteOtherInvestment(id))
     return (
         <WidgetContainer width={width} isLoading={isLoading}>
             <ul>
                 {otherInvestments.map((investment: IOtherInvestments) => {
-                    let usd,rub
+                    let usd, rub
                     if (investment.isUsd) {
                         usd = investment.count
-                        rub = investment.count *  usdPrice
+                        rub = investment.count * usdPrice
                     } else {
                         usd = investment.count / usdPrice
                         rub = investment.count
@@ -33,16 +33,18 @@ export const OtherInvestmentWidget = (props: { width: number, isLoading: boolean
                         <li className={'investment-li'}>
                             <span className={'investment-name'}>{investment.investmentName}</span>
                             <div>
-                                <span className={'investment-usd'}>{ convertNumber(usd) } $</span> /
-                                <span className={'investment-rub'}>{  convertNumber(rub) } ₽</span>
+                                <span className={'investment-usd'}>{convertNumber(usd)} $</span> /
+                                <span className={'investment-rub'}>{convertNumber(rub)} ₽</span>
                             </div>
-                            <button onClick={()=>deleteOtherInvestment(investment._id)} className='other_investments-btn-delete'>Х</button>
+                            <button onClick={() => deleteOtherInvestment(investment._id)}
+                                    className='other_investments-btn-delete'>Х
+                            </button>
 
                         </li>
                     )
                 })}
                 <li>
-                    Общая сумма :  {convertNumber(allUsd)} $ / {convertNumber(allRub)} ₽
+                    Общая сумма : {convertNumber(allUsd)} $ / {convertNumber(allRub)} ₽
                 </li>
             </ul>
 
