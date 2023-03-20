@@ -1,3 +1,4 @@
+import {createSelector} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 import {
     ICoinOptionsList,
@@ -6,8 +7,8 @@ import {
     IUserCoinList
 } from "../../components/interfaces/server-types";
 
-
-export const coinsWithFullInfoSelector = (store: RootState) =>[...store.coinsWithFullData].sort((a, b) => b.myInvestingRub - a.myInvestingRub)
+export const storeSelector = (store:RootState) => store;
+export const coinsWithFullInfoSelector = createSelector(storeSelector, (store) => [...store.coinsWithFullData].sort((a, b) => b.myInvestingRub - a.myInvestingRub))
 export const coinsNameSelector = (store: RootState):IUserCoinList => store.user?.coins || []
 export const isLoadingSelector = (store: RootState):boolean => store.isLoading
 export const userSelector = (store: RootState):IUser | undefined => store.user
